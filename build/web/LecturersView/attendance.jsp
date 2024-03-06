@@ -28,7 +28,7 @@
     <body>
 
         <%
-String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
+        String url = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort()
                 + request.getContextPath();
         %>
         <jsp:include page="header.jsp"></jsp:include>
@@ -91,8 +91,8 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
                                             <!-- Default checked radio -->
                                             <div class="form-check">
                                                 <input class="form-check-input"
-                                                       <c:if test="${status.status==0}">checked</c:if>
-                                                       type="radio" name="${status.student.id}" value="0" required/>
+                                                       <c:if test="${status.status==-1}">checked</c:if>
+                                                       type="radio" name="${status.student.id}" value="-1" required/>
                                                 <label class="form-check-label" for="flexRadioDefault2"> absent </label>
                                             </div>
                                         </td>
@@ -146,7 +146,7 @@ String url = request.getScheme() + "://" + request.getServerName() + ":" + reque
                                     </td>
                                     <td>
                                         <div>
-                                            <c:if test="${status.status==0}">
+                                            <c:if test="${status.status==-1}">
                                                 <span class="red">absent</span>
                                             </c:if>
                                             <c:if test="${status.status==1}">

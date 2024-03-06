@@ -40,8 +40,14 @@
                     }else {
                          month=monday.getMonthValue()+"";
                     }
+                    String day = "";
+                    if(monday.getDayOfMonth()<=9){
+                        day="0"+monday.getDayOfMonth();
+                    }else{
+                        day = monday.getDayOfMonth()+"";
+                    }
                 %>
-                <li class="list-group-item px-3 border-0"><a href="lecture/schedule?year=<%=monday.getYear()%>&week=<%=monday.getDayOfMonth()%>%2F<%=month%>">Lịch dạy</a></li>
+                <li class="list-group-item px-3 border-0"><a href="lecture/schedule?year=<%=monday.getYear()%>&week=<%=day%>%2F<%=month%>">Lịch dạy</a></li>
 
             </ul>  
         </div>

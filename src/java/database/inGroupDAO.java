@@ -23,11 +23,12 @@ public class inGroupDAO {
             Connection connection = JDBC.getConnection();
             String sql = "select idStudent\n"
                     + "from inGroup\n"
-                    + "where idGroup = ?";
+                    + "where idGroup = ?\n"
+                    + "ORDER BY  idStudent asc";
             PreparedStatement preparedStatement = connection.prepareCall(sql);
             preparedStatement.setInt(1, idGroup);
             ResultSet resultSet = preparedStatement.executeQuery();
-            while(resultSet.next()){
+            while (resultSet.next()) {
                 String idStudent = resultSet.getString(1);
                 StudentDAO studentDAO = new StudentDAO();
                 Student student = studentDAO.selectStudent(idStudent);

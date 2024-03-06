@@ -6,11 +6,7 @@
 
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="model.Lession"%>
-<%@page import="model.Group"%>
-<%@page import="model.Course"%>
-<%@page import="model.Room"%>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -35,7 +31,7 @@
     </head>
     <body>
         <jsp:include page="header.jsp"></jsp:include>
-            <div class="container">
+            <div class="container">               
                 <br>
                 <button onclick="goBack()"class="btn btn-light" data-mdb-ripple-init data-mdb-ripple-color="dark">Back</button>
                 <br>
@@ -96,56 +92,50 @@
                             <th>${requestScope.date6}</th>
                             <th>${requestScope.date7}</th>
                             <th>${requestScope.date8}</th>
-                                                    
+
                         </tr>
-                        
+
                     </thead>
-
-                    <%for(int slot = 0;slot<=12;slot++){%>
-                    <tr class="table-light">
-                        <td>SLOT <%=slot%></td>
-
-                        <%
-                            
-                            for(int i = 2;i<=8;i++){
-                                Object obj = request.getAttribute("list"+i);
-                                if(obj!=null){
-                                    boolean flag = true;
-                                    ArrayList<Lession> list = (ArrayList<Lession>) obj;
-                                    if(list.isEmpty()){%>
-                        <td>-</td>
-                        <%}else{
-                              
-                    for(Lession lession : list){
-                       if(lession.getSlot().getIdSlot()==slot){ flag = false;%>
-                        <td>
-                            <%= lession.getGroup().getCourse().getCodeCourse() %><br>
-                            at: <%= lession.getRoom().getNameRoom()%> <br>
-                            <%if(lession.getStatus()==0){%><span style="color: red;font-size: 12px">NOT YET<br></span><%}%>
-                            <a href="../lecture/take?id=<%=lession.getIdLession()%>">Attendance</a>
-                            <div style="text-align: center;background: darkslategrey;color: white;border-radius:30px 30px 30px 30px;width: 95px">
-                                (<%=lession.getSlot().getTimeLine()%>)
-                            </div>
-                        </td>
-                        <%}else{ %>
-
-                        <%}}
-                            if(flag){%>
-                        <td>-</td>
-                        <%}}}else { %>
-                        <%}}%>
-
-
-
-
-
-                    </tr> 
-                    <%}%>
-
-
-
+                    <c:forEach begin="0" end="12" var="slot">
+                        <tr class="table-light">
+                            <td>SLOT ${slot}</td>
+                            <c:forEach begin="2" end="8" var="thu">
+                                <c:set var="listNumber" value="list${thu}"/>
+                                <c:set var="list" value="${requestScope[listNumber]}"/>
+                                
+                                <c:if test="${not empty list}">
+                                    <c:set var="flag" value="1" />
+                                    <c:forEach items="${list}" var="lession">                                        
+                                        <c:if test="${lession.slot.idSlot == slot}">
+                                            <td>
+                                                <c:set var="flag" value="0"/>
+                                                ${lession.group.course.codeCourse} <br> at: ${lession.room.nameRoom}
+                                                <c:if test="${lession.status == 0}">
+                                                    <span style="color: red;font-size: 12px"><br>NOT YET<br></span> 
+                                                </c:if>
+                                                <a href="../lecture/take?id=${lession.idLession}">Attendance</a>
+                                                <div style="text-align: center;background: darkslategrey;color: white;border-radius:30px 30px 30px 30px;width: 95px">
+                                                    (${lession.slot.timeLine})
+                                                </div>
+                                            </td>
+                                        </c:if>
+                                    </c:forEach>
+                                    <c:if test="${flag == 1}">
+                                        <td>-</td>
+                                    </c:if>
+                                        
+                                </c:if>
+                                <c:if test="${empty list}">
+                                        <td>-</td>
+                                </c:if>
+                            </c:forEach>
+                        </tr>
+                    </c:forEach>                   
                 </table>
             </div>
+
             <jsp:include page="footer.jsp"></jsp:include>
     </body>
 </html>
+
+

@@ -27,7 +27,7 @@
             .background {
                 font-weight: 500;
                 background-color: #6b90da;
-                
+
             }
             body{
                 font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -36,7 +36,7 @@
             th{
                 width: 350px;
             }
-            
+
         </style>
         <script>
             function goBack() {
@@ -103,7 +103,7 @@
                             <th>Sunday</th>
                         </tr>
                         <tr class="table-info">
-                            <th class="background">${requestScope.date2}</th>
+                            <th>${requestScope.date2}</th>
                             <th>${requestScope.date3}</th>
                             <th>${requestScope.date4}</th>
                             <th>${requestScope.date5}</th>
@@ -114,54 +114,48 @@
                         </tr>
                     </thead>
 
-                    <%for(int slot = 0;slot<=12;slot++){%>
-                    <tr class="table-light">
-                        <td>SLOT <%=slot%></td>
+                    <c:forEach begin="0" end="12" var="slot">
+                        <tr class="table-light">
+                            <td>SLOT ${slot}</td>
+                            <c:forEach begin="2" end="8" var="thu">
+                                <c:set var="listNumber" value="list${thu}"/>
+                                <c:set var="list" value="${requestScope[listNumber]}"/>
 
-                        <%
-                            for(int i = 2;i<=8;i++){
-                                Object obj = request.getAttribute("list"+i);
-                                if(obj!=null){
-                                    boolean flag = true;
-                                    ArrayList<Status> list = (ArrayList<Status>) obj;
-                                    if(list.isEmpty()){%>
-                        <td>-</td>
-                        <%}else{
-                        for(Status staus : list){
-                           if(staus.getLession().getSlot().getIdSlot()==slot){flag=false;%>
+                                <c:if test="${not empty list}">
+                                    <c:set var="flag" value="1" />
+                                    <c:forEach items="${list}" var="status">                                        
+                                        <c:if test="${status.lession.slot.idSlot == slot}">
+                                            <td>
+                                                <c:set var="flag" value="0"/>
+                                                <a href="groupInformation?lession=${status.lession.idLession}">${status.lession.group.course.codeCourse}</a> 
+                                                <br> at: ${status.lession.room.nameRoom}<br>
+                                                    <c:if test="${status.status == -1}">
+                                                    <span class="red">absent</span> 
+                                                    </c:if>
+                                                    <c:if test="${status.status == 1}">
+                                                    <span class="green">attended</span> 
+                                                    </c:if>
+                                                    <c:if test="${status.status == 0}">
+                                                    <span>(-)</span> 
+                                                    </c:if>
+                                                    <br>
+                                                <div style="text-align: center;background: darkslategrey;color: white;border-radius:30px 30px 30px 30px;width: 95px">
+                                                    (${status.lession.slot.timeLine})
+                                                </div>
+                                            </td>
+                                        </c:if>
+                                    </c:forEach>
+                                    <c:if test="${flag == 1}">
+                                        <td>-</td>
+                                    </c:if>
 
-                        <td>
-                            <a href="groupInformation?lession=<%=staus.getLession().getIdLession()%>"><%= staus.getLession().getGroup().getCourse().getCodeCourse() %></a><br>
-                            at: <%= staus.getLession().getRoom().getNameRoom()%>
-                            <div>
-                                <% if(staus.getStatus()==0){%>
-                                <span class="red">(absent)</span>
-                                <%}else if(staus.getStatus()==1){%>
-                                <span class="green">(attended)</span>
-                                <%}else{%>
-                                (-)
-                                <%}%>
-                            </div>
-                            <div style="text-align: center;width: 80px; background: darkslategrey;color: white;border-radius:30px 30px 30px 30px;width: 95px">
-                                (<%=staus.getLession().getSlot().getTimeLine()%>)
-                            </div>
-                        </td>
-                        <%}else{ %>
-
-
-                        <%}}
-if(flag){%> 
-                        <td>-</td>
-                        <%}}}else { %>
-                        <td>-</td>
-                        <%}}%>
-
-
-
-
-
-                    </tr> 
-                    <%}%>
+                                </c:if>
+                                <c:if test="${empty list}">
+                                    <td>-</td>
+                                </c:if>
+                            </c:forEach>
+                        </tr>
+                    </c:forEach>
 
 
 

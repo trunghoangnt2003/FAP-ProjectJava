@@ -10,7 +10,8 @@
 <html>
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <title>Login Page</title>
+        <meta name="google-signin-client_id" content="640660647139-t1brdm7075p7dpeabkoqsiols7shf6cr.apps.googleusercontent.com">
+        <title>FAP</title>
         <script src="js/login.js"></script>
         <link rel="stylesheet" href="css/login.css"/>
         <style>
@@ -77,7 +78,10 @@
                 background: #ff8000;
                 transition: 0s;
             }
-
+            a{
+                text-decoration: none;
+                color: red;
+            }
             section .signin
             {
                 position: absolute;
@@ -229,6 +233,8 @@
                             <input type="submit" value="Login"> 
 
                         </div> 
+                        <div><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/fap/google&response_type=code
+                                &client_id=640660647139-t1brdm7075p7dpeabkoqsiols7shf6cr.apps.googleusercontent.com&approval_prompt=force">Login Google</a></div>
 
                     </form> 
 
@@ -239,6 +245,9 @@
         </section> <!-- partial --> 
 
     </body>
+
+
+    <script src="https://apis.google.com/js/platform.js?onload=renderButton" async defer></script>
 
 
 </html>

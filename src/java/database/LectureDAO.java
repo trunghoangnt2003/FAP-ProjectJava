@@ -85,6 +85,26 @@ public class LectureDAO {
         }
         return user;
     }
+    public Lecture getLoginGoogle(String email) {
+        Lecture user = null;
+        try {
+            Connection connection = JDBC.getConnection();
+            String sql = "select * from [Lecture]"
+                    + "where [email]=?";
+            PreparedStatement preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String passWord = resultSet.getString("pass");
+                String name = resultSet.getNString("name");
+                user = new Lecture(email, passWord, id, name);
+            }
+            JDBC.closeConnection(connection);
+        } catch (SQLException e) {
+        }
+        return user;
+    }
 
     public int insertUser(Lecture user) {
         int kq = 0;

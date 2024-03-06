@@ -4,41 +4,28 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/StatusDAO.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/index.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/LecturersView/schedule.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/ScoreServlet.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/HomeServlet.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/LectureDAO.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/LessionDAO.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Point.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/TakeAttendance.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/LecturersView/footer.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/WEB-INF/web.xml</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/LecturersView/attendance.jsp</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/LecturersView/header.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/StudentView/groupInformation.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/LogOutServlet.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/JDBC.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Week.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Category.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/User.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/CategoryDAO.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Lecture.java</file>
+            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Status.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/StudentView/schedule.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/RoomDAO.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/LoginServlet.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/StudentView/HomeOfStudent.jsp</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/CourseDAO.java</file>
+            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/LoginServlet.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/StudentListServlet.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/PointDAO.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/AuthenticationFilter.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/ScoreDAO.java</file>
+            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/CourseDAO.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/ScheduleStudentServlet.java</file>
+            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/StudentDAO.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/ScheduleLectureServlet.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/LecturersView/Home.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/GroupInformation.java</file>
-            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Lession.java</file>
+            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/database/GroupDAO.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/controller/AuthenticationServlet.java</file>
+            <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/src/java/model/Lession.java</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/StudentView/score.jsp</file>
             <file>file:/C:/Users/trung/Documents/NetBeansProjects/fap/web/StudentView/studentList.jsp</file>
         </group>

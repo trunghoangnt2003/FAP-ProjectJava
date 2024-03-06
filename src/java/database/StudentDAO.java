@@ -16,6 +16,26 @@ import model.Student;
  * @author trung
  */
 public class StudentDAO {
+    public Student getLoginGoogle(String email) {
+        Student user = null;
+        try {
+            Connection connection = JDBC.getConnection();
+            String sql = "select * from [Student]"
+                    + "where [email]=?";
+            PreparedStatement preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, email);
+            ResultSet resultSet = preparedStatement.executeQuery();
+            while (resultSet.next()) {
+                String id = resultSet.getString("id");
+                String passWord = resultSet.getString("pass");
+                String name = resultSet.getNString("name");
+                user = new Student(email, passWord, id, name);
+            }
+            JDBC.closeConnection(connection);
+        } catch (SQLException e) {
+        }
+        return user;
+    }
     public ArrayList<Student> selectAll() {
         ArrayList<Student> list = new ArrayList<>();
         try {

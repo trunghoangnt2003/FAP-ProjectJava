@@ -10,7 +10,7 @@
     </servlet>
     <servlet>
         <servlet-name>ScheduleServlet</servlet-name>
-        <servlet-class>controller.ScheduleStudentServlet</servlet-class>
+        <servlet-class>controller.student.ScheduleStudentServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeServlet</servlet-name>
@@ -18,23 +18,27 @@
     </servlet>
     <servlet>
         <servlet-name>ScheduleLectureServlet</servlet-name>
-        <servlet-class>controller.ScheduleLectureServlet</servlet-class>
+        <servlet-class>controller.lecture.ScheduleLectureServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>TakeAttendanceServlet</servlet-name>
-        <servlet-class>controller.TakeAttendance</servlet-class>
+        <servlet-class>controller.lecture.TakeAttendance</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>ScoreServlet</servlet-name>
-        <servlet-class>controller.ScoreServlet</servlet-class>
+        <servlet-class>controller.student.ScoreServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>GroupInformation</servlet-name>
-        <servlet-class>controller.GroupInformation</servlet-class>
+        <servlet-class>controller.student.GroupInformation</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>StudentListServlet</servlet-name>
-        <servlet-class>controller.StudentListServlet</servlet-class>
+        <servlet-class>controller.student.StudentListServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <servlet-class>googleController.LoginGoogleServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -71,5 +75,9 @@
     <servlet-mapping>
         <servlet-name>StudentListServlet</servlet-name>
         <url-pattern>/student/listStudent</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>LoginGoogleServlet</servlet-name>
+        <url-pattern>/google</url-pattern>
     </servlet-mapping>
 </web-app>
