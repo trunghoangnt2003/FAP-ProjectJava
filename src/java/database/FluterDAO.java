@@ -23,13 +23,14 @@ public class FluterDAO {
             String sql = "select count(f.idFluter)\n"
                     + "from Fluter f join Fluter_Role fr on f.idFluter=fr.idFluter\n"
                     + "			join Role_User ru on ru.idRole=fr.idRole\n"
-                    + "where ru.idUser=? and f.url like ?";
+                    + "where ru.idUser=? and f.url = ?";
             PreparedStatement preparedStatement = connection.prepareCall(sql);
-            preparedStatement.setString(2, url+'%');
+            preparedStatement.setString(2, url);
             preparedStatement.setString(1, idUser);
             ResultSet resultSet = preparedStatement.executeQuery();
             if (resultSet.next()) {
                 result = resultSet.getInt(1);
+                System.out.println(result);
             }
             JDBC.closeConnection(connection);
         } catch (Exception e) {

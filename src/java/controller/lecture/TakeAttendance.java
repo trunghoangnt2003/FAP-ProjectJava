@@ -36,13 +36,14 @@ public class TakeAttendance extends AuthenticationServlet {
     private void checkAttendance(Student student, Lession lession) {
         StatusDAO statusDAO = new StatusDAO();
         int absent = statusDAO.selectCountStatusAbsent(student.getId());
-        if (absent == 3 || absent == 4) {
+        double check = absent*100/(lession.getGroup().getCourse().getNumberLessionOfCourse());
+        if (check>=15&&check<=20) {
             String title = "[DVSV] Tình trạng điểm danh học kỳ "+lession.getGroup().getSemester().getNameSemester()+":"+lession.getGroup().getCourse().getCodeCourse()+"\n";
             String string = "Thân gửi " + student.getName() + ",\n"
                     + "\n"
                     + "(Nếu em đã được duyệt đơn miễn điểm danh, vui lòng bỏ qua email này).\n"
                     + "\n"
-                    + "Phòng Dịch vụ sinh viên thông báo đến em về tình trạng điểm danh của em như sau: Môn "+lession.getGroup().getCourse().getCodeCourse()+": "+absent*100/20+"% absent - Vắng mặt/Tổng số: "+absent+"/20 slot\n"
+                    + "Phòng Dịch vụ sinh viên thông báo đến em về tình trạng điểm danh của em như sau: Môn "+lession.getGroup().getCourse().getCodeCourse()+": "+absent*100/(lession.getGroup().getCourse().getNumberLessionOfCourse())+"% absent - Vắng mặt/Tổng số: "+absent+"/"+lession.getGroup().getCourse().getNumberLessionOfCourse()+" slot\n"
                     + "\n"
                     + "Em lưu ý nên đi học chuyên cần trong thời gian tới để đảm bảo điều kiện dự thi cuối kỳ (tham gia học tập tối thiểu 80%). Theo quy định, Nhà trường sẽ không điểm danh bù cho sinh viên vì bất kỳ lý do gì nếu sinh viên không tham gia buổi học bao gồm cả những buổi học bị bỏ lỡ do xếp lớp muộn. Đồng thời em cũng đừng quên kiểm tra điểm danh hàng ngày để kịp thời xử lý khi nhận thấy có sự sai sót về điểm danh nhé. Trong trường hợp nhận thấy có sai sót về điểm danh em vui lòng làm theo hướng dẫn sau:\n"
                     + "\n"
@@ -107,8 +108,14 @@ public class TakeAttendance extends AuthenticationServlet {
         } else {
             month = monday.getMonthValue() + "";
         }
+        String day = "";
+        if (monday.getDayOfMonth() <= 9) {
+            day = "0" + monday.getDayOfMonth();
+        } else {
+            day = monday.getDayOfMonth() + "";
+        }
         //req.getRequestDispatcher("schedule?year=2024&week=05%2F02").forward(req, resp);
-        String redirectUrl = "schedule?year=" + monday.getYear() + "&week=" + monday.getDayOfMonth() + "%2F" + month;
+        String redirectUrl = "schedule?year=" + monday.getYear() + "&week=" + day + "%2F" + month;
         resp.sendRedirect(redirectUrl);
     }
 

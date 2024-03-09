@@ -61,6 +61,7 @@ public class LoginServlet extends HttpServlet {
             resp.addCookie(c_username);
             resp.addCookie(c_password);
             resp.sendRedirect("home");
+            //req.getRequestDispatcher("home").forward(req, resp);
         }
 
     }

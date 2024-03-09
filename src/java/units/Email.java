@@ -36,13 +36,14 @@ public class Email {
         try {
 
             MimeMessage message = new MimeMessage(session);
+            message.setHeader("Content-Type", "text/html");
             message.setFrom(new InternetAddress(username));
             message.setRecipients(
                     Message.RecipientType.TO,
                     InternetAddress.parse(email)
             );
             message.setSubject(titile,"UTF-8");
-            message.setText(string,"UTF-8");
+            message.setText(string,"UTF-8" );
 
             Transport.send(message);
 

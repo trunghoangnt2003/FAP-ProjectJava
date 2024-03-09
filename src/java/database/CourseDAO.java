@@ -22,7 +22,7 @@ public class CourseDAO {
         Course course = null;
         try {
             Connection connection = JDBC.getConnection();
-            String sql = "select [idCourse],[codeCourse],[nameCourse]\n"
+            String sql = "select *\n"
                     + "from [Course]\n"
                     + "Where idCourse = ?";
             PreparedStatement preparedStatement = connection.prepareCall(sql);
@@ -32,7 +32,8 @@ public class CourseDAO {
                 int idCourse = resultSet.getInt(1);
                 String codeCourse = resultSet.getString(2);
                 String nameCourse = resultSet.getString(3);
-                course = new Course(idCourse, codeCourse, nameCourse);
+                int number = resultSet.getInt(4);
+                course = new Course(idCourse, codeCourse, nameCourse,number);
             }
             JDBC.closeConnection(connection);
         } catch (Exception e) {

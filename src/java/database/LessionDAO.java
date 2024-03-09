@@ -51,6 +51,37 @@ public class LessionDAO {
         }
         return list;
     }
+    public ArrayList<Lession> selectLessionByUserAndGroup(String idUser,int idGroup) {
+        ArrayList<Lession> list = new ArrayList<>();
+        try {
+            Connection connection = JDBC.getConnection();
+            String sql = "select Lession.*\n"
+                    + "from [Lession] \n"
+                    + "join [Group] on Lession.idGroup = [Group].idGroup\n"
+                    + "join inGroup on inGroup.idGroup = Lession.idGroup\n"
+                    + "where inGroup.idStudent = ? and [Group].idGroup=?";
+            PreparedStatement preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setString(1, idUser);
+            preparedStatement.setInt(2, idGroup);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idLession = rs.getInt("idLession");
+                int idLecture = rs.getInt("idLecture");
+                int idRoom = rs.getInt("idRoom");
+                int idSlot = rs.getInt("idSlot");
+                java.sql.Date date = rs.getDate("date");
+                GroupDAO groupDAO = new GroupDAO();
+                LectureDAO lectureDAO = new LectureDAO();
+                RoomDAO roomDAO = new RoomDAO();
+                TimeSlotDAO timeSlotDAO = new TimeSlotDAO();
+                Lession lession = new Lession(idLession, groupDAO.selectIdGroup(idGroup), lectureDAO.selectById(idLecture), roomDAO.selectById(idRoom), timeSlotDAO.selectById(idSlot), date);
+                list.add(lession);
+            }
+            JDBC.closeConnection(connection);
+        } catch (Exception e) {
+        }
+        return list;
+    }
 
     public Lession selectLessionById(int id) {
         Lession lession = null;

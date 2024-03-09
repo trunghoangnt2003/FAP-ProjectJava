@@ -12,12 +12,24 @@ public class Course {
     private int idCourse;
     private String codeCourse;
     private String nameCourse;
+    private int numberLessionOfCourse;
 
-    public Course(int idCourse, String codeCourse, String nameCourse) {
+    public Course(int idCourse, String codeCourse, String nameCourse, int numberLessionOfCourse) {
         this.idCourse = idCourse;
         this.codeCourse = codeCourse;
         this.nameCourse = nameCourse;
+        this.numberLessionOfCourse = numberLessionOfCourse;
     }
+
+    public int getNumberLessionOfCourse() {
+        return numberLessionOfCourse;
+    }
+
+    public void setNumberLessionOfCourse(int numberLessionOfCourse) {
+        this.numberLessionOfCourse = numberLessionOfCourse;
+    }
+
+   
 
     public Course() {
     }

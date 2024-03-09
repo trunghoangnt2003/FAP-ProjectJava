@@ -43,8 +43,7 @@ public class ScoreServlet extends AuthenticationServlet {
         int idSemester = Integer.parseInt(request.getParameter("idSemester"));
         boolean check = true;
         if (rollName == null) {
-            HttpSession session = request.getSession();
-            Student student = (Student) session.getAttribute("user");
+            Student student = (Student) user;
             SemesterDAO semesterDAO = new SemesterDAO();
             ArrayList<Semester> semesters = semesterDAO.selectAll();
             GroupDAO groupDAO = new GroupDAO();

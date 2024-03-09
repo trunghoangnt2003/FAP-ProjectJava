@@ -66,6 +66,7 @@ public class LoginGoogleServlet extends HttpServlet {
 
                 response.addCookie(c_username);
                 response.addCookie(c_password);
+                //request.getRequestDispatcher("home").forward(request, response);
                 response.sendRedirect("home");
             }
         }

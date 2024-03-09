@@ -170,4 +170,38 @@ public class StatusDAO {
         }
         return list;
     }
+    public ArrayList<Status> selectByIdGroupAndIdStudent(int id,String idStudent) {
+        ArrayList<Status> list = new ArrayList<>();
+        try {
+            Connection connection = JDBC.getConnection();
+            String sql = "select Status.idStatus, stu.id,Lession.idLession,Status.status,Status.date\n" +
+"                    from Student stu join inGroup ig on stu.id = ig.idStudent\n" +
+"                				join Lession on Lession.idGroup = ig.idGroup\n" +
+"                   				left join Status on stu.id=Status.idStudent and Status.idLession =Lession.idLession\n" +
+"                   where Lession.idGroup = ? and stu.id=?\n" +
+"                   order by Lession.[date]";
+            PreparedStatement preparedStatement = connection.prepareCall(sql);
+            preparedStatement.setInt(1, id);
+            preparedStatement.setString(2, idStudent);
+            ResultSet rs = preparedStatement.executeQuery();
+            while (rs.next()) {
+                int idStatus = rs.getInt(1);
+                int idLession = rs.getInt(3);
+
+                int status = rs.getInt(4);
+
+                java.sql.Timestamp date = rs.getTimestamp(5);
+
+                LessionDAO lessionDAO = new LessionDAO();
+                Lession lession = lessionDAO.selectLessionById(idLession);
+                StudentDAO studentDAO = new StudentDAO();
+                Student student = studentDAO.selectStudent(idStudent);
+                Status s = new Status(idStatus, student, lession, status, date);
+                list.add(s);
+            }
+            JDBC.closeConnection(connection);
+        } catch (Exception e) {
+        }
+        return list;
+    }
 }

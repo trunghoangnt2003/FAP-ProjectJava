@@ -54,6 +54,7 @@
                 %>
                 <li class="list-group-item px-3 border-0"><a href="student/schedule?year=<%=monday.getYear()%>&week=<%=day%>%2F<%=month%>">Thời khóa biểu</a></li>
                 <li class="list-group-item px-3 border-0"><a href="student/score?idSemester=3">Điểm số</a></li>
+                <li class="list-group-item px-3 border-0"><a href="student/attReport?idSemester=3">Trạng Thái Điểm Danh</a></li>
 
             </ul>  
         </div>

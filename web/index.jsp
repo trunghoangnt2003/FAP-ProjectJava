@@ -235,6 +235,7 @@
                         </div> 
                         <div><a href="https://accounts.google.com/o/oauth2/auth?scope=email&redirect_uri=http://localhost:8080/fap/google&response_type=code
                                 &client_id=640660647139-t1brdm7075p7dpeabkoqsiols7shf6cr.apps.googleusercontent.com&approval_prompt=force">Login Google</a></div>
+                        <div><a href="resetPassWod">Remember password</a></div>
 
                     </form> 
 

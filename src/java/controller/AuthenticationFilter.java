@@ -15,8 +15,6 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.io.IOException;
-import model.Lecture;
-import model.Student;
 import model.User;
 
 /**
@@ -38,11 +36,7 @@ public class AuthenticationFilter implements Filter {
         // Kiểm tra đường dẫn yêu cầu
         String path = httpRequest.getRequestURI();
         System.out.println(path);
-        if (path.equals("/fap/index.jsp")) {
-            chain.doFilter(request, response);
-            return;
-        }
-        if (path.equals("/fap/login")||path.equals("/fap/google") || path.contains("/fap/css") || path.contains("/fap/js")) {
+        if (path.equals("/fap/resetPassWod")||path.equals("/fap/changePass")||path.contains("/fap/img")||path.equals("/fap/login")||path.equals("/fap/google") || path.equals("/fap/css") || path.equals("/fap/js")) {
             chain.doFilter(request, response);
             return;
         }
@@ -53,6 +47,7 @@ public class AuthenticationFilter implements Filter {
             int result = fluterDAO.fluterRole(user.getId(), path);
             if(result!=0){
                 chain.doFilter(request, response);
+                return;
             }else{
                 ((HttpServletResponse) response).sendRedirect(url+"/logout");
             }
